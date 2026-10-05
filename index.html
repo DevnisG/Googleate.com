@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Googleate.com</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta name="application-name" content="Googleate.com" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+<div id="pastel-search-final">
+  <header class="studio-toolbar" id="utilityBar">
+    <div class="toolbar-brand-row">
+      <div class="app-brand" aria-label="Googleate.com">
+        <span class="app-brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64"><circle cx="32" cy="14" r="13" fill="#f19bbd"/><circle cx="50" cy="26" r="13" fill="#e986ad"/><circle cx="43" cy="47" r="13" fill="#f4abc6"/><circle cx="21" cy="47" r="13" fill="#e986ad"/><circle cx="14" cy="26" r="13" fill="#f19bbd"/><circle cx="32" cy="32" r="10" fill="#ffd36a"/></svg></span>
+        <span class="app-brand-copy"><strong class="app-brand-name">Googleate.com</strong><small>Generador de videos</small></span>
+      </div>
+      <span class="status-chip" id="statusChip">Listo para editar</span>
+      <span class="status-chip time-chip" id="headerTimeChip" title="Tiempo real del video: delay + búsqueda + cierre">0.00 / 8.95 s</span>
+    </div>
+
+    <nav class="playback-controls" aria-label="Controles de reproducción">
+      <button type="button" class="tool-btn primary" id="playBtn" title="Reinicia y reproduce el ejemplo"><span class="btn-icon">▶</span><span>Reproducir</span></button>
+      <button type="button" class="tool-btn" id="pauseBtn" disabled title="Pausa o continúa la reproducción"><span class="btn-icon">⏸</span><span>Pausar</span></button>
+      <button type="button" class="tool-btn record" id="recordBtn" title="Graba automáticamente la pestaña y descarga el video"><span class="record-dot" aria-hidden="true"></span><span>Grabar</span></button>
+      <button type="button" class="tool-btn next" id="nextBtn" title="Carga el próximo ejemplo"><span>Siguiente</span><span class="btn-icon">→</span></button>
+    </nav>
+
+    <div class="toolbar-right">
+      <button type="button" class="tool-btn secondary" id="fullscreenBtn"><span class="btn-icon">⛶</span><span>Pantalla completa</span></button>
+      <button type="button" class="tool-btn secondary" id="toggleEditorBtn"><span class="btn-icon">✎</span><span>Ocultar editor</span></button>
+    </div>
+  </header>
+
+  <div class="stage" id="stage">
+    <div class="browser">
+      <div class="chrome"><div class="macrow"><div class="traffic"><span class="r"></span><span class="y"></span><span class="g"></span></div></div><div class="toolbar-browser"><span class="nav">‹</span><span class="nav">›</span><span class="nav">↻</span><div class="address">🔒&nbsp;<span id="addressText">google.com</span></div><span class="nav">☆</span></div></div>
+      <div class="page" id="page">
+        <div class="loader" id="loader"></div>
+        <section class="home" id="home">
+          <div class="google-logo"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div>
+          <div class="searchbox" id="searchBox"><input id="searchInput" readonly /><button type="button" class="search-button" id="searchButton" aria-label="Buscar"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="2.2"></circle><path d="M15.2 15.2L20.7 20.7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg></button></div>
+          <div class="home-buttons"><span>Buscar con Google</span><span>Voy a tener suerte</span></div>
+        </section>
+        <section class="results" id="results">
+          <div class="results-head"><div class="google-small"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div><div class="result-search"><span class="query-text" id="resultQuery"></span><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M15.2 15.2L20.7 20.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></div></div>
+          <div class="tabs"><span>Todo</span><span>Imágenes</span><span>Videos</span><span>Noticias</span><span>Más</span></div><div class="rule"></div><div class="count">Cerca de 2 resultados destacados · 0,38 segundos</div>
+          <div class="content" id="resultsContent">
+            <div>
+              <article class="first-result"><div class="source">Comunidad escolar<small>escuela.example › personas › destacados</small></div><a href="#" class="first-link" id="firstLink"></a><div class="snippet"><div class="thumb" id="thumb"><div class="avatar" id="avatar"><img id="thumbImage" class="avatar-photo" alt="Foto de la persona" /><span id="avatarInitials">AM</span></div></div><div><p class="person" id="personName"></p><p class="description" id="description"></p></div></div></article>
+              <article class="second-result" id="secondResult"><div class="source">Comunidad escolar<small>escuela.example › galería › recuerdos</small></div><a href="#" class="second-link" id="secondLink"></a><div class="second-snippet"><div class="second-photo" id="secondPhotoBox"><img id="secondResultImage" alt="Otra foto de la persona" /><span class="second-fallback" id="secondPhotoFallback">AM</span></div><div><p class="person" id="secondPersonName"></p></div></div></article>
+            </div>
+            <aside class="gemini" id="geminiCard"><div class="gemini-head"><div class="gemini-star">✦</div><div class="gemini-name">Gemini</div><span class="ai-label">Vista general con IA</span></div><div class="label">Consulta relacionada</div><div class="prompt" id="geminiPrompt"></div><div class="label">Respuesta</div><div class="answer"><span id="geminiAnswer"></span><span class="caret" id="caret"></span></div></aside>
+          </div>
+        </section>
+        <section class="final-photo" id="finalPhoto"><div class="final-inner" id="finalInner"><div class="final-pair"><div class="final-photo-card past"><div class="final-avatar" id="finalSecondAvatar"><img id="finalSecondPortraitImage" class="avatar-photo" alt="Retrato anterior" /><span id="finalSecondAvatarInitials">AM</span></div></div><div class="time-bridge" aria-hidden="true"></div><div class="final-photo-card present"><div class="final-avatar" id="finalAvatar"><img id="finalPortraitImage" class="avatar-photo" alt="Retrato reciente" /><span id="finalAvatarInitials">AM</span></div></div></div><div class="final-caption"><strong id="finalName"></strong></div></div></section>
+        <div class="ring" id="ring"></div><div class="cursor" id="cursor"><svg viewBox="0 0 32 40"><path d="M4 2L26 23H16.5L22 35L16.7 37.5L11 25.5L4 32Z" fill="white" stroke="#202124" stroke-width="2" stroke-linejoin="round"></path></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="editor" id="editor">
+    <div class="editor-header"><div class="editor-title"><span class="eyebrow">EDITOR</span><h2>Prepará tu ejemplo</h2><p>Completá cada bloque de izquierda a derecha. Todo se guarda automáticamente en esta PC.</p></div><span class="autosave" id="autosaveState">✓ Guardado automático</span></div>
+    <div class="editor-grid">
+      <section class="panel example-panel">
+        <h3>1 · Ejemplo</h3><p class="help">Podés tener varias personas o versiones guardadas.</p>
+        <div class="field"><label for="exampleSelect">Ejemplo activo</label><select class="edit" id="exampleSelect"></select></div>
+        <div class="row" style="margin-top:9px"><button class="mini-btn" id="newExampleBtn" type="button">＋ Nuevo</button><button class="mini-btn" id="duplicateExampleBtn" type="button">⧉ Duplicar</button><button class="mini-btn danger" id="deleteExampleBtn" type="button">Eliminar</button></div>
+        <div class="field"><label for="nameEdit">Nombre</label><input class="edit" id="nameEdit" placeholder="Ej. Alma Moreno" /></div>
+      </section>
+
+      <section class="panel animation-panel">
+        <h3>2 · Animación</h3><p class="help">Controlá el delay y cuánto dura la búsqueda. La timeline suma también el delay inicial y el cierre para mostrar la duración real del video.</p>
+        <div class="timing-panel"><div class="timing-control"><div class="timing-head"><label for="delayEdit">Delay inicial</label><span class="timing-value" id="delayValue">0.3 s</span></div><input class="timing-range" id="delayEdit" type="range" min="0" max="3" step="0.1" value="0.3"></div><div class="timing-control"><div class="timing-head"><label for="totalTimeEdit">Duración búsqueda</label><span class="timing-value" id="totalTimeValue">8.0 s</span></div><input class="timing-range" id="totalTimeEdit" type="range" min="4" max="18" step="0.5" value="8"></div><div class="timeline-control"><div class="timing-head"><label for="timelineEdit">Timeline</label><span class="timing-value" id="timelineValue">0.00 / 8.95 s</span></div><input class="timeline-range" id="timelineEdit" type="range" min="0" max="8.95" step="0.01" value="0" aria-label="Mover la timeline"><div class="timeline-marks"><span>Inicio</span><span>Arrastrá para previsualizar</span><span>Final</span></div></div></div>
+        <div class="windows-tip"><span>🎬</span><div><strong>Para grabar en Windows:</strong> usá Chrome o Edge, tocá <b>● Grabar</b> y elegí <b>Esta pestaña</b> → <b>Compartir</b>. Al terminar, el video se descarga solo. Como alternativa, Windows permite grabar con <b>Win + Alt + R</b>.</div></div>
+      </section>
+
+      <section class="panel full photos-panel">
+        <h3>3 · Fotos</h3><p class="help">La foto actual aparece primero y la anterior debajo. La forma más fácil es hacer clic en cada tarjeta o arrastrar una imagen; también podés pegar una URL directa a una imagen.</p>
+        <div class="photo-grid">
+          <div class="upload-card" data-field="photoUrl" id="photoCard">
+            <div class="upload-head"><span class="upload-title">Foto actual <small>Resultado 1</small></span><span class="upload-state" id="photoState">Sin foto</span></div>
+            <label class="drop-zone" for="photoFile"><span class="preview-circle"><img id="photoPreview" alt="Vista previa foto principal"><span id="photoPreviewFallback">+</span></span><span class="drop-copy"><strong>Elegir foto del equipo</strong><span>También podés arrastrarla acá. Se optimiza para guardarla automáticamente.</span></span></label>
+            <input class="file-input" type="file" id="photoFile" accept="image/*">
+            <div class="url-row"><input class="edit" id="photoEdit" placeholder="O pegá una URL directa a una imagen…"><button class="mini-btn" type="button" data-apply-url="photoUrl">Usar link</button></div>
+            <div class="image-actions"><button class="mini-btn danger" type="button" data-clear-image="photoUrl">Quitar foto</button></div>
+          </div>
+
+          <div class="upload-card" data-field="secondPhotoUrl" id="secondPhotoCard">
+            <div class="upload-head"><span class="upload-title">Foto anterior <small>Resultado 2</small></span><span class="upload-state" id="secondPhotoState">Sin foto</span></div>
+            <label class="drop-zone" for="secondPhotoFile"><span class="preview-circle"><img id="secondPhotoPreview" alt="Vista previa segunda foto"><span id="secondPhotoPreviewFallback">+</span></span><span class="drop-copy"><strong>Elegir foto del equipo</strong><span>Usá aquí la foto de años atrás para crear el efecto visual de evolución.</span></span></label>
+            <input class="file-input" type="file" id="secondPhotoFile" accept="image/*">
+            <div class="url-row"><input class="edit" id="secondPhotoEdit" placeholder="O pegá una URL directa a una imagen…"><button class="mini-btn" type="button" data-apply-url="secondPhotoUrl">Usar link</button></div>
+            <div class="image-actions"><button class="mini-btn danger" type="button" data-clear-image="secondPhotoUrl">Quitar foto</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel background-panel">
+        <h3>4 · Fondo</h3><p class="help">Ya viene cargado con el fondo predeterminado. También podés reemplazarlo por un archivo o Drive.</p>
+        <div class="upload-card" data-field="backgroundUrl" id="backgroundCard">
+          <div class="upload-head"><span class="upload-title">Fondo</span><span class="upload-state" id="backgroundState">Predeterminado</span></div>
+          <label class="drop-zone" for="backgroundFile"><span class="preview-bg" id="backgroundPreview"></span><span class="drop-copy"><strong>Cambiar fondo desde el equipo</strong><span>JPG, PNG o WebP. El fondo se aplica también al cierre.</span></span></label>
+          <input class="file-input" type="file" id="backgroundFile" accept="image/*">
+          <div class="url-row"><input class="edit" id="backgroundEdit" placeholder="O pegá una URL directa a una imagen…"><button class="mini-btn" type="button" data-apply-url="backgroundUrl">Usar link</button></div>
+          <div class="image-actions"><button class="mini-btn" type="button" id="restoreBackgroundBtn">Restaurar fondo</button></div>
+        </div>
+      </section>
+
+      <section class="panel text-panel">
+        <h3>5 · Texto</h3><p class="help">Estos textos son los que se ven durante la búsqueda.</p>
+        <div class="field"><label for="queryEdit">Búsqueda</label><input class="edit" id="queryEdit" placeholder="Ej. la persona más bondadosa de esta escuela"></div>
+        <div class="field"><label for="descEdit">Descripción</label><textarea class="edit" id="descEdit"></textarea></div>
+      </section>
+
+      <section class="panel gemini-panel" id="geminiPanel">
+        <div class="panel-title-row"><div><h3>6 · Gemini</h3><p class="help">Mostrá u ocultá el bloque de Gemini. Los textos quedan guardados aunque lo ocultes.</p></div><label class="switch-wrap gemini-panel-toggle" title="Mostrar u ocultar el bloque de Gemini en el resultado"><span class="switch-copy"><strong>Gemini</strong><small>Mostrar en resultado</small></span><span class="switch"><input type="checkbox" id="geminiSwitch" checked><span class="slider"></span></span></label></div>
+        <div class="gemini-fields" id="geminiFields"><div class="field"><label for="promptEdit">Consulta</label><textarea class="edit" id="promptEdit"></textarea></div><div class="field"><label for="responseEdit">Respuesta</label><textarea class="edit" id="responseEdit"></textarea></div></div>
+      </section>
+
+      <section class="panel storage-panel">
+        <h3>7 · Biblioteca local</h3><p class="help">No hace falta guardar archivos aparte. Los ejemplos, fotos y ajustes quedan almacenados automáticamente en este navegador.</p>
+        <div class="storage-card">
+          <div class="storage-main"><strong>Base local de alta capacidad</strong><span id="storageUsage">Preparando almacenamiento…</span></div>
+          <span class="storage-badge" id="storageBadge">IndexedDB</span>
+        </div>
+        <div class="storage-actions"><button class="mini-btn danger" id="resetStorageBtn" type="button">Restaurar ejemplos iniciales</button></div>
+        <div class="muted-box" style="margin-top:10px">Las fotos elegidas desde el equipo se optimizan antes de guardarse. La capacidad disponible depende de Chrome/Edge y del espacio libre de la PC, y normalmente es muy superior a localStorage.</div>
+      </section>
+    </div>
+  </section>
+</div>
+
+<script src="js/app.js" defer></script>
+</body>
+</html>
